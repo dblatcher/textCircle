@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en-UK">
+
+<head>
+	<title>page</title>
+	<link rel="stylesheet" href="demo.css" />
+</head>
+
+<body>
+
+<div class = 'example'>
+
+	<h2>Generic bit of text content</h2>
+	
+	<div class = 'red circle' adjust = "size" >
+		Nothing like a circle to draw the eye!
+	</div>
+
+	<p>Putting key text into circles can be a good design feature - for example to break up long boring passages of text like this one. The challenge is to make the text in rectangular elements make best use of the circular space, especially if the text is dynamic. Sometimes you will need the circle to be an exact size, sometimes it will be more important that your text is the right size. It goes without saying all the text needs to fit. You might even want to make the text as big as possible to fill up as much of the available space. Nobody wants to spend forever placing fiddling with mark-up to make that work, only to start again when the content changes or someone thinks a new font would be a good idea.</p>
+
+	<div class = 'yellow circle' adjust = "font" >
+		This one has a lot of text but the font shrinks until it fits.
+	</div>
+	<div class = 'yellow circle' adjust = "font" >
+		This one has even more text so the font will shrink more so that it will also fit into the space.
+	</div>
+	
+	<p>This is a javascript based solution for that. You can define an element with the "circle" class, and enter the inner text as normal and the function arranges the words to fit inside. By default, if there is too much text, it won't show. If you set the 'adjust' attribute, the text can be shrunk or the circle expanded so all the text will show. You can style your circle elements how you like. There are some limitations: </p>
+	<ul>
+		<li>Padding doesn't work with circles! But you can get a padding like effect with border.</li>
+		<li>The style for your elements needs to include equal height and width</li>
+		<li>The adjustments are fairly slow!</li>
+	</ul>
+	
+	<p>Play with the demo below!</p>
+	
+</div>
+
+<div class = 'demo' style = "clear:both;">
+
+<form 
+id = "myForm"
+oninput="fsV.value=fs.value+'px'; csV.value=cs.value+'px'"
+>
+	<div>
+		<input type="checkbox" name="setFontSize" checked="true" >set font size<br>
+		<input type="range" id="fs" name="fontSize" min="5" max="50" step = "1" value = "15">
+		<output value = "15" for = "fs" name = "fsV">15px</output>
+	</div>
+	
+	<div>
+		<input type="checkbox" checked="true" name="setCircleSize">set circle size<br>
+		<input type="range" id = "cs" name="circleSize" min="50" max="400" step = "5" value = "100">
+		<output value = "100" for = "cs" name = "csV">100px</output>
+	</div>
+	
+	<div>
+		<span>Adjust </span>
+		<select name = 'adjust'>
+			<option>none</option>
+			<option>size</option>
+			<option>font</option>
+		</select>
+		<span>to fit text. Adjustment type : </span>
+		<select name = 'adjustType'>
+			<option>quick</option>
+			<option>precise</option>
+		</select>
+	</div>
+	
+	<div>
+		<input type="checkbox" name="yAlign" value="top"> align text to top</input>	
+	</div>
+	
+	<textArea name = "text" placeholder = "enter text here"></textArea>
+	
+	<div>
+		<input type = "button" value = "create" onclick="handleForm()">
+	</div>
+</form>
+
+
+<div class = 'yellow circle'  >
+	We hold these truths to be self-evident, that all men are created equal, that they are endowed by their creator with certain unalienable rights, that among these are life, liberty and the pursuit of happiness.
+</div>
+
+<div class = 'red circle'  >
+	We hold these truths to be self-evident, that all men are created equal, that they are endowed by their creator with certain unalienable rights, that among these are life, liberty and the pursuit of happiness.
+</div>
+
+</div>
+	
+<script src="script.js"></script>
+
+<script>
+
+function handleForm(){
+	var form = document.getElementById('myForm');
+	var data = form.elements;		
+	
+	var circles = form.parentElement.getElementsByClassName('circle');
+	
+	for (r=0;r<circles.length;r++) {
+	
+		circles[r].style = ""
+		fitTextToCircle(circles[r],{
+			text : data.text.value,
+			adjust : data.adjust.value,
+			precise: (data.adjustType.value == 'precise'),
+			fontSize : data.setFontSize.checked ? data.fontSize.value :null,
+			circleSize : data.setCircleSize.checked ? data.circleSize.value : null,
+			yAlign : data.yAlign.checked ? "top" : null
+		});
+	
+	}
+}
+
+</script>
+
+</body>
+
+</html>
+	

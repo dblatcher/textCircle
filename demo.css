@@ -1,0 +1,64 @@
+.example>.circle{
+	margin:5px;
+}
+
+.example>.yellow{
+	float:right;
+	height:6rem;
+	width:6rem;
+}
+
+.example>.red {
+	float:left; font-size:125%;
+}
+.example>p{
+	text-align:justify;
+}
+
+
+.demo {
+	display:flex;
+	flex-flow:row wrap;
+	justify-content: space-evenly;
+	align-items: center;
+  border:  8px groove;
+}
+
+
+
+form {
+display:flex;
+flex-flow:column;
+border:2px solid black;
+padding:4px;
+margin:5px;
+align-self:flex-start;
+flex-basis:100%;
+}
+
+form>div{
+display:flex;
+align-items:center;
+flex-basis:1.25em;
+}
+
+.demo>.circle{
+	width:100px;
+	height:100px;
+	font-size:15px;
+}
+
+.yellow{
+	background-color:yellow;
+	box-shadow:2px 2px black;
+	box-sizing:content-box;
+	font-family: cursive;
+ }
+ 
+.red {
+	background-color:crimson;
+	border:10px groove crimson;
+	box-sizing:border-box;
+	font-family: fantasy; 
+}
+
