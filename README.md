@@ -6,6 +6,7 @@ This script styles elements into circles and arranges the innerText into rows to
 - The style for your elements needs to include equal height and width
 - The adjustments are fairly slow!
 - only works to fit single paragraphs of plain text
+
 The demo can be seen on [codepen](https://codepen.io/dblatcher/pen/NoYaLJ) or downloaded from the repo.
 
 ## fitTextToCircle(*circle* [, *{options}*])
